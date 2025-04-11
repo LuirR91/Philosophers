@@ -1,22 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine_actions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luiribei <luiribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/01 11:23:45 by luiribei          #+#    #+#             */
+/*   Updated: 2025/04/11 15:10:05 by luiribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
-// Think routine funtion
-
+/* Think routine funtion */
 void	think(t_philo *philo)
 {
 	print_message("is thinking", philo, philo->id);
 }
 
-// Dream routine funtion
-
+/* Dream routine funtion */
 void	dream(t_philo *philo)
 {
 	print_message("is sleeping", philo, philo->id);
 	ft_usleep(philo->time_to_sleep);
 }
 
-// Eat routine funtion
-
+/* Eat routine funtion */
 void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);

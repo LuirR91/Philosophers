@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luiribei <luiribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/01 11:23:54 by luiribei          #+#    #+#             */
+/*   Updated: 2025/04/11 15:10:19 by luiribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
-// Checks if the value of dead_flag changed
-
-int	dead_loop(t_philo *philo)
+/* Checks if the value of dead_flag changed */
+int	dead(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
 	if (*philo->dead == 1)
@@ -11,8 +22,7 @@ int	dead_loop(t_philo *philo)
 	return (0);
 }
 
-// Thread routine
-
+/* Thread routine */
 void	*philo_routine(void *pointer)
 {
 	t_philo	*philo;
@@ -20,7 +30,7 @@ void	*philo_routine(void *pointer)
 	philo = (t_philo *)pointer;
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
-	while (!dead_loop(philo))
+	while (!dead(philo))
 	{
 		eat(philo);
 		dream(philo);
@@ -29,8 +39,7 @@ void	*philo_routine(void *pointer)
 	return (pointer);
 }
 
-// Creates all the threads
-
+/* Creates all the threads */
 int	thread_create(t_program *program, pthread_mutex_t *forks)
 {
 	pthread_t	observer;
