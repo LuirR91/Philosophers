@@ -39,7 +39,7 @@ make
 ```sh
 ./philosophers <number_of_philosophers> <time to die> <time to eat> <time to sleep> <number of times all the philosophers need to eat before terminating the program> **
 
-** optional argument>
+** optional argument
 ```
 
 ## Project Structure
